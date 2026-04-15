@@ -7,7 +7,7 @@ import org.w3c.dom.events.Event;
 public class Buzon {
 
 
-    private ArrayList<Evento> cola;
+    private Queue<Evento> cola;
     private int capacidad;
     private static int ocupantes = 0;
    
@@ -31,16 +31,17 @@ public class Buzon {
 
 
             }
+        }
 
             ocupantes++;
             depositar(ev);
             notify();
 
-        }
+        
     }
 
 
-    public synchronized void salir(Evento ev){
+    public synchronized Evento salir(){
 
         while (ocupantes == 0 ) {
 
@@ -50,11 +51,18 @@ public class Buzon {
 
             }
 
-            ocupantes--;
-            retirar(ev);
-            notify();
+           
+
             
         }
+        
+
+        ocupantes--;
+        Evento evento = retirar();
+        notify();
+
+        return evento;
+            
 
 
     }
@@ -65,14 +73,22 @@ public class Buzon {
         cola.add(e);
     }
 
-    public void retirar(Evento e){
+    public Evento retirar(){
 
-        cola.remove(e);
+        Evento evento = cola.poll();
+        return evento;
     }
 
 
+    public Queue<Evento> obtenerCola(){
 
+        return this.cola;
+    }
     
+    public int numOcupantes(){
+
+        return this.ocupantes;
+    }
 
 
 }

@@ -3,7 +3,6 @@ public class Evento  {
     private int identificador;
     private int idSensor;
     private int tipoServidor;
-    private Buzon buzonEntrada;
     private boolean esfin;
 
 
@@ -25,13 +24,7 @@ public class Evento  {
     }
 
 
-    public void esfinal(){
-
-        
-
-    }
-
-
+    
   
 
 

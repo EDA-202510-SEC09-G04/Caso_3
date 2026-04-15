@@ -31,7 +31,7 @@ public class Sensor  extends Thread{
     int eventosPorGenerar = indentificador * valorbase;
 
 
-    try{
+   
 
         for (int i = 1; i<= eventosPorGenerar; i++){
 
@@ -40,12 +40,13 @@ public class Sensor  extends Thread{
             int idEvento = indentificador++;
 
             Evento nuEvento = new Evento(idEvento, indentificador, tipoServidor);
+            buzonEntrada.entrar(nuEvento);
+            eventosGenerados ++;
             
 
 
         }
 
-    }
     
 
 

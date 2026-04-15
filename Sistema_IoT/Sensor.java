@@ -38,7 +38,7 @@
 
                 int tipoServidor = numeroRandom.nextInt(numeroServidores) + 1;
 
-                int idEvento = indentificador *(10*eventosPorGenerar) + eventosGenerados;
+                int idEvento =  indentificador *((int)Math.pow(10,eventosPorGenerar)) + eventosGenerados;
 
                 Evento nuEvento = new Evento(idEvento, indentificador, tipoServidor);
                 buzonEntrada.entrar(nuEvento);

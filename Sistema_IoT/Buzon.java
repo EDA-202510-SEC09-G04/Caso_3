@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 
 import org.w3c.dom.events.Event;
@@ -9,12 +10,14 @@ public class Buzon {
 
     private Queue<Evento> cola;
     private int capacidad;
-    private static int ocupantes = 0;
+    private  int ocupantes ;
    
 
     public Buzon(int capacidad){
 
     this.capacidad = capacidad;
+    this.cola = new LinkedList<Evento>();
+    this.ocupantes = 0;
 
 
 
@@ -26,7 +29,7 @@ public class Buzon {
 
         while (capacidad == ocupantes) {
             try{
-            wait();
+            wait(1000);
             } catch(InterruptedException e){
 
 
@@ -35,7 +38,7 @@ public class Buzon {
 
             ocupantes++;
             depositar(ev);
-            notify();
+            notifyAll();
 
         
     }

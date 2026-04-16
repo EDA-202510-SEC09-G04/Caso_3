@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import org.w3c.dom.events.Event;
+
 public class Broker extends Thread {
 
     public Buzon buzonClasificacion;
@@ -46,6 +48,12 @@ public class Broker extends Thread {
             contador++;
 
         }
+
+
+        Evento eventoFinal = new Evento(-1, -1, -1,true);
+        buzonAlertas.depositar(eventoFinal);
+        System.out.println("Broker terminó. Procesó " + contador + " eventos");
+
 
     }
     

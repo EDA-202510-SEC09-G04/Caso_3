@@ -24,6 +24,17 @@ public class Evento  {
     }
 
 
+    public  boolean EsFin(){
+
+        return esfin;
+    }
+
+    public  int getId(){
+
+        return identificador;
+    }
+
+
     
   
 

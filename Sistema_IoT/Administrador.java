@@ -28,7 +28,7 @@ public class Administrador extends Thread {
 
             
 
-            Evento evento = buzonAlertas.retirar();
+            Evento evento = buzonAlertas.SalirSemiActiva();
 
             if(evento == null){
 

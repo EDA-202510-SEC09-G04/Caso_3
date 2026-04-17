@@ -35,6 +35,12 @@ public class Evento  {
     }
 
 
+    public int getTipoServidor(){
+
+        return tipoServidor;
+    }
+
+
     
   
 

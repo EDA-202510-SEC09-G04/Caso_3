@@ -38,11 +38,11 @@ public class Broker extends Thread {
             
             if (num % 8 == 0){
 
-                buzonAlertas.depositar(eventoAEval);
+                buzonAlertas.entrarSemiActiva(eventoAEval);
             }
             else{
 
-                buzonClasificacion.depositar(eventoAEval);
+                buzonClasificacion.entrarSemiActiva(eventoAEval);
             }
 
             contador++;

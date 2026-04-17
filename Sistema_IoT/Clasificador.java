@@ -2,16 +2,16 @@ public class Clasificador extends Thread{
 
     private Buzon buzonClasificador;
     private boolean terminado = false;
-    private Buzon buzonServidor;
+    private Buzon[] buzonesServidor;
     private int EventosFin;
     private int numeroClasificadores;
     private static int clasificadoresTerminados = 0;
     
 
-    public Clasificador( Buzon buzonClasdificador, Buzon buzonServidor,int EventosFin, int numeroClasificadores){
+    public Clasificador( Buzon buzonClasdificador, Buzon[] buzonesServidor,int EventosFin, int numeroClasificadores){
 
         this.buzonClasificador = buzonClasdificador;
-        this.buzonServidor = buzonServidor;
+        this.buzonesServidor = buzonesServidor;
         this.EventosFin = EventosFin;
         this.numeroClasificadores = numeroClasificadores;
 
@@ -35,19 +35,23 @@ public class Clasificador extends Thread{
 
                 terminado = true;
             }
+
+            else{
+
+               for (int i = 0; i< buzonesServidor.length; i++){
+
+                if (eventoAEval.getTipoServidor() == i){
+
+                    buzonesServidor[i].entrar(eventoAEval);
+                }
+
+               }
+
+            }
            
 
 
-            if(clasificadoresTerminados == numeroClasificadores-1){
-
-                for (int i = 0; i < EventosFin; i++){
-
-
-
-                }
-
-
-            }
+           
 
 
 
@@ -55,7 +59,7 @@ public class Clasificador extends Thread{
         }
 
 
-        clasificadoresTerminados++;
+       
 
 
 

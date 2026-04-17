@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Evento  {
 
     private int identificador;
@@ -40,6 +42,16 @@ public class Evento  {
         return tipoServidor;
     }
 
+    public int asignarServidor(){
+
+        Random rand = new Random();
+        int num = rand.nextInt(tipoServidor+1);
+
+        return num;
+
+
+
+    }
 
     
   

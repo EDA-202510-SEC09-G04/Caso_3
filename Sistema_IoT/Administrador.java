@@ -48,7 +48,7 @@ public class Administrador extends Thread {
                  int num = random.nextInt(21);
 
                 if(num % 4 == 0){
-                    buzonClasificacion.entrar(evento);
+                    buzonClasificacion.entrarSemiActiva(evento);
 
                     System.out.println("Administrador: evento " + evento.getId() + " es NORMAL → clasificación");
                 }

@@ -115,6 +115,7 @@ public class Main {
                 e.printStackTrace();
             }
         }
+        System.out.println("Numero de eventos en buzon de entrada: " + buzonEntrada.numOcupantes());
         broker.start();
         admin.start();
         for (Clasificador c : clasificadores) c.start();
@@ -160,6 +161,9 @@ public class Main {
 
 
         System.out.println("Sistema completado. Todos los hilos terminaron."); 
+        System.out.println("Numero de eventos en buzon de entrada: " + buzonEntrada.numOcupantes());
+        System.out.println("Numero de eventos en buzon de clasificación: " + buzonClasificador.numOcupantes());
+        System.out.println("Numero de eventos en buzon de Alertas: " + buzonAlertas.numOcupantes());
 
 
 

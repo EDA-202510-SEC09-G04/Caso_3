@@ -3,16 +3,15 @@ public class Clasificador extends Thread{
     private Buzon buzonClasificador;
     private boolean terminado = false;
     private Buzon[] buzonesServidor;
-    private int EventosFin;
+    
     private int numeroClasificadores;
     private static int clasificadoresTerminados = 0;
     
 
-    public Clasificador( Buzon buzonClasdificador, Buzon[] buzonesServidor,int EventosFin, int numeroClasificadores){
+    public Clasificador( Buzon buzonClasdificador, Buzon[] buzonesServidor, int numeroClasificadores){
 
         this.buzonClasificador = buzonClasdificador;
         this.buzonesServidor = buzonesServidor;
-        this.EventosFin = EventosFin;
         this.numeroClasificadores = numeroClasificadores;
 
 

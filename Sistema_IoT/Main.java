@@ -45,6 +45,65 @@ public class Main {
 
 
         }
+
+        int totalEventos = 0;
+
+        for(int i = 0 ; i < ni ; i++){
+
+            totalEventos += eventosBase * i;
+
+        }
+
+        Buzon buzonEntrada = new Buzon(2000000);
+        Buzon buzonAlertas = new Buzon(2000000);
+        Buzon buzonClasificador = new Buzon(tam1); 
+
+        Buzon[] buzonesServidores = new Buzon[ns];
+
+
+        for (int i = 0; i < ns; i++){
+
+            buzonesServidores[i] = new Buzon(tam2);
+        }
+
+
+        // Sensores
+
+
+        Sensor[] sensores = new Sensor[ni];
+
+
+        for(int i = 0; i < ni; i++){
+
+            sensores[i] = new Sensor(i+1, eventosBase, ns, buzonEntrada);
+        }
+
+
+        // Broker
+
+        Broker broker = new Broker(buzonEntrada, buzonAlertas, buzonClasificador, totalEventos);
+
+        // Administrador
+
+        Administrador admin = new Administrador(buzonAlertas, buzonClasificador, nc);
+
+        // Clasificadores
+
+        Clasificador[] clasificadores = new Clasificador[nc];
+
+        for(int i = 0; i< nc;i++){
+
+
+            clasificadores[i] = new Clasificador(buzonClasificador, buzonesServidores, nc);
+        }
+
+        // Servidores
+        Servidor[] servidores = new Servidor[ns];
+        for (int i = 0; i < ns; i++) {
+            servidores[i] = new Servidor(buzonesServidores[i]);
+        }
+
+
     }
 
 }

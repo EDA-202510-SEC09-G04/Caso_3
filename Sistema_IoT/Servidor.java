@@ -37,7 +37,7 @@ public class Servidor extends Thread {
 
             } else{
 
-                System.out.println("Procesando el evento...");
+                System.out.println("Servidor: Procesando el evento...");
 
                 try{
                 Thread.sleep(num);
@@ -45,7 +45,7 @@ public class Servidor extends Thread {
 
                 }
 
-                System.out.println("Evento con id" + eventoAEval.getId() + "ha sido procesado");
+                System.out.println("Servidor: Evento con id" + eventoAEval.getId() + "ha sido procesado");
 
             }
 

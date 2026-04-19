@@ -58,7 +58,7 @@ public class Broker extends Thread {
 
 
         Evento eventoFinal = new Evento(-1, -1, -1,true);
-        buzonAlertas.entrar(eventoFinal);
+        buzonAlertas.entrarSemiActiva(eventoFinal);
         System.out.println("Broker terminó. Procesó " + contador + " eventos");
 
 

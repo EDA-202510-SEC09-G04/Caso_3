@@ -130,7 +130,7 @@ public class Main {
 
         }
 
-        admin.start();
+       
         
 
         try{
@@ -148,7 +148,7 @@ public class Main {
         }
         }
 
-        for(Servidor sv : servidores) sv.start();
+      
 
         for(Servidor sv: servidores){
         try{

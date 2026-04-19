@@ -40,10 +40,11 @@ public class Administrador extends Thread {
 
                 finRecibido = true;
                 System.out.println("Administrador recibió evento de fin");
+                continue;
             }
 
-
-            for(int i = 0; i < buzonAlertas.obtenerCola().size(); i++){
+            else{
+           
 
                  int num = random.nextInt(21);
 
@@ -57,8 +58,8 @@ public class Administrador extends Thread {
                      System.out.println("Administrador: evento " + evento.getId() + " es MALICIOSO → DESCARTADO");
                 }
             
-
             }
+            
 
             
         }
@@ -69,7 +70,7 @@ public class Administrador extends Thread {
 
             Evento eventoFin = new Evento(-1, -1, -1, true);
 
-            buzonClasificacion.entrar(eventoFin);
+            buzonClasificacion.entrarSemiActiva(eventoFin);
 
 
 

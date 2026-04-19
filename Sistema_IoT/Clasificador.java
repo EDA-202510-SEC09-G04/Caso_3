@@ -37,7 +37,7 @@ public class Clasificador extends Thread{
 
                 terminado = true;
                 clasificadoresTerminados++;
-                System.out.println("Clasificador terminado por el evento fin con id" + eventoAEval.getId());
+                System.out.println("Clasificador: Clasificador terminado por el evento fin con id" + eventoAEval.getId());
             }
 
             else{
@@ -47,7 +47,7 @@ public class Clasificador extends Thread{
                 if (eventoAEval.getTipoServidor()-1 == i){
 
                     buzonesServidor[i].entrar(eventoAEval);
-                    System.out.println("Evento enviado al servidor número" + i + "con el id" + eventoAEval.getId());
+                    System.out.println("Clasificador: Evento enviado al servidor número" + i + "con el id" + eventoAEval.getId());
                 }
 
                }
@@ -60,7 +60,7 @@ public class Clasificador extends Thread{
                     Evento eventoFin = new Evento(-1,-1,-1,true);
 
                     buzonesServidor[i].entrar(eventoFin);
-                    System.out.println("Evento fin enviado al servidor número " + i );
+                    System.out.println("Clasificador: Evento fin enviado al servidor número " + i );
                 }
 
             }

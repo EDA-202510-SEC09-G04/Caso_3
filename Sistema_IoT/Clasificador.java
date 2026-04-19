@@ -31,9 +31,23 @@ public class Clasificador extends Thread{
 
             Evento eventoAEval = buzonClasificador.retirar();
 
+
+            if (clasificadoresTerminados == numeroClasificadores-1){
+
+                for(int i = 0 ; i < buzonesServidor.length; i++){
+                    Evento eventoFin = new Evento(-1,-1,-1,true);
+
+                    buzonesServidor[i].entrar(eventoFin);
+                    System.out.println("Evento fin enviado al servidor número " + i );
+                }
+
+            }
+
             if (eventoAEval.EsFin()){
 
                 terminado = true;
+                clasificadoresTerminados++;
+                System.out.println("Clasificador terminado por el evento fin con id" + eventoAEval.getId());
             }
 
             else{
@@ -43,11 +57,14 @@ public class Clasificador extends Thread{
                 if (eventoAEval.getTipoServidor() == i){
 
                     buzonesServidor[i].entrar(eventoAEval);
+                    System.out.println("Evento enviado al servidor número" + i + "con el id" + eventoAEval.getId());
                 }
 
                }
 
             }
+
+          
            
 
 

@@ -52,6 +52,7 @@
             }
 
         
+            System.out.println("Sensor con id: " + indentificador + " a creado " + eventosGenerados + "eventos");
 
 
 

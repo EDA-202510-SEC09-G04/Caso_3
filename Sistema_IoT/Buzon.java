@@ -88,7 +88,7 @@ public class Buzon {
 
         ocupantes--;
         Evento evento = retirar();
-        notify();
+        notifyAll();
 
         return evento;
             

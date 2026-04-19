@@ -23,6 +23,7 @@ public class Main {
 
             ni = scanner.nextInt();
             eventosBase = scanner.nextInt();
+            nc = scanner.nextInt();
             ns = scanner.nextInt();
             tam1 = scanner.nextInt();
             tam2 = scanner.nextInt();
@@ -48,7 +49,7 @@ public class Main {
 
         int totalEventos = 0;
 
-        for(int i = 0 ; i < ni ; i++){
+        for(int i = 1 ; i <= ni ; i++){
 
             totalEventos += eventosBase * i;
 
@@ -102,6 +103,64 @@ public class Main {
         for (int i = 0; i < ns; i++) {
             servidores[i] = new Servidor(buzonesServidores[i]);
         }
+
+
+        // INICIALIZAR HILOS
+
+        for (Sensor s : sensores) s.start();
+        for (Sensor s : sensores) {
+            try {
+                s.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        broker.start();
+        admin.start();
+        for (Clasificador c : clasificadores) c.start();
+        for (Servidor sv : servidores) sv.start();
+
+        
+       
+
+
+        try{
+        broker.join();
+        } catch(InterruptedException e){
+
+        }
+
+        admin.start();
+        
+
+        try{
+        admin.join();
+        } catch(InterruptedException e){
+
+        }
+
+       
+        for(Clasificador cl: clasificadores){
+        try{
+         cl.join();
+        } catch(InterruptedException e){
+            
+        }
+        }
+
+        for(Servidor sv : servidores) sv.start();
+
+        for(Servidor sv: servidores){
+        try{
+         sv.join();
+        } catch(InterruptedException e){
+            
+        }
+        }
+
+
+        System.out.println("Sistema completado. Todos los hilos terminaron."); 
+
 
 
     }

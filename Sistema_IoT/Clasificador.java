@@ -1,4 +1,4 @@
-public class Clasificador extends Thread{
+public class Clasificador extends Thread {
 
     private Buzon buzonClasificador;
     private boolean terminado = false;
@@ -6,85 +6,51 @@ public class Clasificador extends Thread{
     
     private int numeroClasificadores;
     private static int clasificadoresTerminados = 0;
-    
 
-    public Clasificador( Buzon buzonClasdificador, Buzon[] buzonesServidor, int numeroClasificadores){
-
+    public Clasificador(Buzon buzonClasdificador, Buzon[] buzonesServidor, int numeroClasificadores) {
         this.buzonClasificador = buzonClasdificador;
         this.buzonesServidor = buzonesServidor;
         this.numeroClasificadores = numeroClasificadores;
-
-
-
-
     }
 
-
     @Override
-
-
-    public void run(){
-
+    public void run() {
 
         while (!terminado) {
 
             Evento eventoAEval = buzonClasificador.salir();
 
-
-            
-
-            if (eventoAEval.EsFin()){
+            if (eventoAEval.EsFin()) {
 
                 terminado = true;
-                clasificadoresTerminados++;
-                System.out.println("Clasificador: Clasificador terminado por el evento fin con id" + eventoAEval.getId());
-            }
 
-            else{
+                System.out.println("Clasificador: Clasificador terminado por el evento fin con id " + eventoAEval.getId());
 
-               for (int i = 0; i< buzonesServidor.length; i++){
+                synchronized (Clasificador.class) {
+                    clasificadoresTerminados++;
 
-                if (eventoAEval.getTipoServidor()-1 == i){
+                    if (clasificadoresTerminados == numeroClasificadores) {
 
-                    buzonesServidor[i].entrar(eventoAEval);
-                    System.out.println("Clasificador: Evento enviado al servidor número" + i + "con el id" + eventoAEval.getId());
+                        System.out.println("Último clasificador → enviando eventos de fin a servidores");
+
+                        for (int i = 0; i < buzonesServidor.length; i++) {
+                            Evento eventoFin = new Evento(-1, -1, -1, true);
+                            buzonesServidor[i].entrar(eventoFin);
+                        }
+                    }
                 }
 
-               }
+            } else {
 
-            }
+                for (int i = 0; i < buzonesServidor.length; i++) {
 
-            if (clasificadoresTerminados == numeroClasificadores-1){
+                    if (eventoAEval.getTipoServidor() - 1 == i) {
 
-                for(int i = 0 ; i < buzonesServidor.length; i++){
-                    Evento eventoFin = new Evento(-1,-1,-1,true);
-
-                    buzonesServidor[i].entrar(eventoFin);
-                    System.out.println("Clasificador: Evento fin enviado al servidor número " + i );
+                        buzonesServidor[i].entrar(eventoAEval);
+                        System.out.println("Clasificador: Evento enviado al servidor número " + i + " con el id " + eventoAEval.getId());
+                    }
                 }
-
             }
-
-          
-           
-
-
-           
-
-
-
-            
         }
-
-
-       
-
-
-
     }
-
-
-
-
-
 }

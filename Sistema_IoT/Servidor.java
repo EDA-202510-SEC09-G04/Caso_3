@@ -14,9 +14,6 @@ public class Servidor extends Thread {
 
     }
 
-
-
-
     @Override
     public void run() {
 
@@ -25,7 +22,7 @@ public class Servidor extends Thread {
 
         while (!terminado) {
 
-            int num = rand.nextInt(100,1001);
+            int num = rand.nextInt(901) + 100;
             
 
             Evento eventoAEval = buzonConsolidacion.salir();
@@ -47,17 +44,8 @@ public class Servidor extends Thread {
 
                 System.out.println("Servidor: Evento con id" + eventoAEval.getId() + "ha sido procesado");
 
-            }
-
-
-            
+            }        
         }
-
-
-
-
     }
-
-
 
 }
